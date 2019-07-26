@@ -1,7 +1,14 @@
 // Dependencies
-const router = require("express").Router();
-const authRoutes = require("./authRoutes");
+const router = require('express').Router();
+const authRoutes = require('./authRoutes');
+const passportService = require('./../../services/passport');
 
-router.use("/auth", authRoutes);
+const authMiddleware = require('./../../middlewares/authMiddlewares');
+
+router.route('/test').get(authMiddleware.requireAuth, (req, res) => {
+  res.send(req.user);
+});
+
+router.use('/auth', authRoutes);
 
 module.exports = router;
