@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Button from './../components/Button/CounterButton';
+import Button from './../components/Buttons/CounterButton';
 
 class Counter extends Component {
   state = {
