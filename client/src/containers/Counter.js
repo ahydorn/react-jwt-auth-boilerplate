@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleIncrement, handleDecrement } from './../actions';
+import requireAuth from './.././/hoc/requireAuth';
 
 class Counter extends Component {
   render() {
@@ -8,7 +9,7 @@ class Counter extends Component {
     return (
       <div>
         <h1>Counter</h1>
-        <p>Counter: 0</p>
+        <p>Counter: {this.props.counter}</p>
         <button onClick={this.props.incrementCounter}>Increment</button>
         <button onClick={this.props.decrementCounter}>Decrement</button>
       </div>
@@ -22,7 +23,8 @@ function mapStateToProps({ counter }) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  { handleIncrement, handleDecrement }
-)(Counter);
+export default requireAuth(
+  connect(
+    mapStateToProps,
+    { handleIncrement, handleDecrement }
+  )(Counter)
