@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { handleIncrement, handleDecrement } from './../actions';
-import requireAuth from './.././/hoc/requireAuth';
+import { incrementCounter, decrementCounter } from './../actions';
+
+import requireAuth from './../hoc/requireAuth';
+
 
 class Counter extends Component {
   render() {
-    console.log(this.props);
+    console.log('Counters props', this.props);
     return (
       <div>
         <h1>Counter</h1>
@@ -17,15 +19,8 @@ class Counter extends Component {
   }
 }
 
-function mapStateToProps({ counter }) {
-  return {
-    counter: counter.counter
-  };
+function mapStateToProps({ counter }){
+  return { counter: counter.counter };
 }
 
-export default requireAuth(
-  connect(
-    mapStateToProps,
-    { handleIncrement, handleDecrement }
-  )(Counter)
-);
+export default requireAuth(connect(mapStateToProps, { incrementCounter, decrementCounter })(Counter));

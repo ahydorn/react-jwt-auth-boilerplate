@@ -1,5 +1,9 @@
 import React from 'react';
 
 export default ({ children }) => {
-  return <div>{children}</div>;
+  return (
+    <div>
+      {children}
+    </div>
+  )
 };

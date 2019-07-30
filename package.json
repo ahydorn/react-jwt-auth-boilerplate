@@ -1,5 +1,5 @@
 {
-  "name": "react-jwt-auth-boilerplate",
+  "name": "manny-jwt",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,7 @@
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-posted": "npm run build"
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [],
   "author": "",

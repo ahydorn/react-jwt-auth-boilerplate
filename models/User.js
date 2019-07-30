@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+
 const Schema = mongoose.Schema;
+
 const validator = require('validator');
 
-const validateEmail = function(email) {
+const validateEmail = function(email){
   return validator.isEmail(email);
 };
 
@@ -13,13 +15,13 @@ const UserSchema = new Schema({
     unique: true,
     required: true,
     lowercase: true,
-    validate: function(email) {
-      [validateEmail, 'Please enter a valid email address'];
-    }
+    validate: [
+      validateEmail,
+      'Please enter a valid email address'
+    ]
   },
   password: {
     type: String,
-    // TODO: Add minimum length in here
     required: true
   },
   todos: [
@@ -30,8 +32,7 @@ const UserSchema = new Schema({
   ]
 });
 
-// Hooking to save event
-UserSchema.pre('save', async function(next) {
+UserSchema.pre('save', async function(next){
   const user = this;
   try {
     const salt = await bcrypt.genSalt();
@@ -40,26 +41,22 @@ UserSchema.pre('save', async function(next) {
     console.log('hash', hash);
     user.password = hash;
     next();
-  } catch (e) {
+  } catch(e) {
     return next(e);
   }
 });
 
-UserSchema.methods.comparePassword = async function(
-  candidatePassword,
-  callback
-) {
+UserSchema.methods.comparePassword = async function(candidatePassword, callback){
   const user = this;
   try {
     const isMatch = await bcrypt.compare(candidatePassword, user.password);
     callback(null, isMatch);
-  } catch (e) {
+  } catch(e) {
     callback(e);
   }
 };
 
-// 2 ways to export.
-// export as User following UserSchema
+
 const User = mongoose.model('User', UserSchema);
 
 module.exports = User;
