@@ -28,3 +28,4 @@ export default requireAuth(
     mapStateToProps,
     { handleIncrement, handleDecrement }
   )(Counter)
+);

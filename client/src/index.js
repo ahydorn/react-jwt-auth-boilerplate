@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
+import Signin from './containers/Signin';
 
 // Import Containers
 import App from './containers/App';
@@ -35,6 +36,7 @@ ReactDOM.render(
         <Route exact path='/counter' component={Counter} />
         <Route exact path='/stuff' component={Stuff} />
         <Route exact path='/signup' component={Signup} />
+        <Route exact path='/signin' component={Signin} />
       </App>
     </Router>
   </Provider>,
