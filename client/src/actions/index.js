@@ -39,3 +39,11 @@ export const signin = (formProps, callback) => async dispatch => {
     dispatch({ type: AUTH_ERROR, payload: 'Invalid login credentials' });
   }
 };
+
+export const signout = () => {
+  localStorage.removeItem('token');
+  return {
+    type: AUTH_USER,
+    payload: ''
+  };
+};

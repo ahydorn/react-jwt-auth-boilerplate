@@ -16,6 +16,7 @@ import Signup from './containers/Signup';
 import Welcome from './components/Welcome';
 
 import reducers from './reducers';
+import Signout from './containers/Signout';
 
 // configure redux dev tools
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -37,6 +38,7 @@ ReactDOM.render(
         <Route exact path='/stuff' component={Stuff} />
         <Route exact path='/signup' component={Signup} />
         <Route exact path='/signin' component={Signin} />
+        <Route exact path='/signout' component={Signout} />
       </App>
     </Router>
   </Provider>,

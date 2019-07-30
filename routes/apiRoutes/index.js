@@ -10,5 +10,6 @@ router.route('/test').get(authMiddleware.requireAuth, (req, res) => {
 });
 
 router.use('/auth', authRoutes);
+router.use('/todo', todoRoutes);
 
 module.exports = router;

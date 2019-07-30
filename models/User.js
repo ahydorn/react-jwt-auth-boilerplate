@@ -21,7 +21,13 @@ const UserSchema = new Schema({
     type: String,
     // TODO: Add minimum length in here
     required: true
-  }
+  },
+  todos: [
+    {
+      ref: 'Todo',
+      type: Schema.Types.ObjectId
+    }
+  ]
 });
 
 // Hooking to save event
